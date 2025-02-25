@@ -23,8 +23,10 @@ func main() {
 
 	r.HandleFunc("/login", handlers.LoginHandler).Methods("POST")
 	r.HandleFunc("/register", handlers.RegisterHandler).Methods("POST")
+	
+	r.HandleFunc("/api/semesters", handlers.GetSemesters).Methods("GET")
 
-	r.HandleFunc("/posts", handlers.GetPost).Methods("GET")
+	r.HandleFunc("/posts/{semesterId}", handlers.GetPost).Methods("GET")
 
 	adminRoute := r.PathPrefix("/admin").Subrouter()
 	adminRoute.Use(middleware.AuthMiddleware, middleware.AdminMiddleware)

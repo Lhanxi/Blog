@@ -5,12 +5,20 @@ import (
 	"net/http"
 	"backend/models"
 	"backend/database"
+	"github.com/gorilla/mux"
 )
 
 func GetPost(w http.ResponseWriter, r *http.Request) {
+	semesterId := mux.Vars(r)["semesterId"]
+
+	if semesterId == "" {
+		http.Error(w, "Missing semesterId", http.StatusBadRequest)
+		return
+	}
+
 	var posts []models.Post
 
-	rows, err := database.DB.Query("SELECT id, title, overview FROM module")
+	rows, err := database.DB.Query("SELECT * FROM module WHERE semester_id = $1", semesterId)
 	if err != nil {
 		http.Error(w, "Error fetching posts", http.StatusInternalServerError)
 		return
@@ -19,7 +27,7 @@ func GetPost(w http.ResponseWriter, r *http.Request) {
 
 	for rows.Next() {
 		var post models.Post
-		if err := rows.Scan(&post.ID, &post.Title, &post.Overview); err != nil {
+		if err := rows.Scan(&post.ID, &post.Title, &post.Lecturer, &post.Overview, &post.Topics, &post.Assessments, &post.Remarks, &post.SemesterId); err != nil {
 			http.Error(w, "Error reading post", http.StatusInternalServerError)
 			return
 		}

@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const response = await fetch('http://localhost:8080/posts', {
+    const response = await fetch('http://localhost:8080/api/semesters', {
       method: 'GET',
     });
 
@@ -38,7 +38,6 @@ export async function GET() {
     }
 
     const result = await response.json();
-    console.log(result);
     return NextResponse.json(result, { status: response.status });
   } catch (error) {
     console.error('Error fetching data from Go backend:', error);
