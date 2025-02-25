@@ -1,0 +1,61 @@
+.card {
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    min-width: 400px;
+    max-width: 500px;
+    cursor: pointer;
+    min-height: 600px;
+    max-height: 1000px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.cardContent {
+    padding: 30px;
+    text-align: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.cardTitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 150;
+}
+
+.cardDescription {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.continueReading {
+    font-family: 'Lato';
+    font-size: 12px;
+    color: #dca714;
+    text-decoration: none;
+    padding-top: 20px;
+}
+
+.continueReading:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,77 @@
+.navbarContainer {
+    width: 100%;
+    background-color: #F8F8F8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    width: 100%;
+    min-height: 60px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.navLinks {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navLinks li {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+    color: black;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 20px;
+    color: #1a1a1a;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    color: #0077b5;
+}
+
+.separator {
+    width: 1px;
+    background-color: #ddd;
+    height: 25px;
+    align-self: stretch;
+}
+
+.name {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+}
