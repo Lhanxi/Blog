@@ -17,13 +17,19 @@ func main() {
 
 	r := mux.NewRouter()
 
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Welcome to the Go Blog API!")
+	}).Methods("GET")
+
 	r.HandleFunc("/login", handlers.LoginHandler).Methods("POST")
 	r.HandleFunc("/register", handlers.RegisterHandler).Methods("POST")
+
+	r.HandleFunc("/posts", handlers.GetPost).Methods("GET")
 
 	adminRoute := r.PathPrefix("/admin").Subrouter()
 	adminRoute.Use(middleware.AuthMiddleware, middleware.AdminMiddleware)
 	adminRoute.HandleFunc("", handlers.AdminDashboard).Methods("GET")
 
 	fmt.Println("Go server running on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", r))
 }

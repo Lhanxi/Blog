@@ -1,19 +1,32 @@
+"use client"
 import Card from "@/components/card/Card";
+import { useState, useEffect } from 'react';
 
 async function getMessage() {
-  const res = await fetch("http://localhost:8080/api/user-input", {
+  const res = await fetch("http://localhost:3000/api/getData", {
     cache: "no-store",
   });
   const data = await res.json();
-  return data.message;
+  return data.posts || [];
 }
 
-export const metadata = {
-  title: 'Blog',
-};
+export default function Page() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default async function Page() {
-  const message = await getMessage();
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const data = await getMessage();
+      setPosts(data);
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="container">

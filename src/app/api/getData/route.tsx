@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+/*
 export async function POST(req: Request) {
   try {
     const { inputValue } = await req.json();
@@ -23,10 +24,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Failed to save input' }, { status: 500 });
   }
 }
+  */
 
 export async function GET() {
   try {
-    const response = await fetch('http://localhost:8080/api/user-input', {
+    const response = await fetch('http://localhost:8080/posts', {
       method: 'GET',
     });
 
@@ -35,7 +37,8 @@ export async function GET() {
       return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
     }
 
-    const result = await response.json();  // Ensure this is correctly formatted
+    const result = await response.json();
+    console.log(result);
     return NextResponse.json(result, { status: response.status });
   } catch (error) {
     console.error('Error fetching data from Go backend:', error);
